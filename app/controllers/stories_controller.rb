@@ -1,19 +1,23 @@
 class StoriesController < ApplicationController
-  # skip_before_action :authenticate_user!
+  skip_before_action :authenticate_user! , only:[:index, :show]
+
   before_action :set_story, only: [:show, :edit, :update, :destroy]
 
 
   # GET /stories
   # GET /stories.json
   def index
-    @stories = current_user.stories
-    
+    if user_signed_in? 
+      @stories = current_user.stories
+    else
+      @stories = Story.all
+    end
   end
 
   # GET /stories/1
   # GET /stories/1.json
   def show
-  
+    
   end
 
   # GET /stories/new
@@ -45,15 +49,17 @@ class StoriesController < ApplicationController
   # PATCH/PUT /stories/1
   # PATCH/PUT /stories/1.json
   def update
-    respond_to do |format|
-      if @story.update(story_params)
-        format.html { redirect_to @story, notice: 'Story was successfully updated.' }
-        format.json { render :show, status: :ok, location: @story }
-      else
-        format.html { render :edit }
-        format.json { render json: @story.errors, status: :unprocessable_entity }
+
+      respond_to do |format|
+        if @story.update(story_params)
+          format.html { redirect_to @story, notice: 'Story was successfully updated.' }
+          format.json { render :show, status: :ok, location: @story }
+        else
+          format.html { render :edit }
+          format.json { render json: @story.errors, status: :unprocessable_entity }
+        end
       end
-    end
+      format.html { redirect_to @story, notice: 'Only admins can edit' }
   end
 
   # DELETE /stories/1
