@@ -7,17 +7,21 @@ class StoriesController < ApplicationController
   # GET /stories
   # GET /stories.json
   def index
-    if user_signed_in? 
+    @stories = Story.all
+
+  end
+
+  def user_stories
+    if user_signed_in?
       @stories = current_user.stories
-    else
-      @stories = Story.all
     end
   end
+
 
   # GET /stories/1
   # GET /stories/1.json
   def show
-    
+
   end
 
   # GET /stories/new
@@ -59,7 +63,6 @@ class StoriesController < ApplicationController
           format.json { render json: @story.errors, status: :unprocessable_entity }
         end
       end
-      format.html { redirect_to @story, notice: 'Only admins can edit' }
   end
 
   # DELETE /stories/1
