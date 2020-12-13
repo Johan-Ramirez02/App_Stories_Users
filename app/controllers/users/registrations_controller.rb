@@ -6,9 +6,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
   
 
   # GET /resource/sign_up
-  # def new
-  #   super
-  # end
+  def new
+    @roles = User.roles.except("admin").keys.to_a
+    super
+  end
 
   # POST /resource
   # def create

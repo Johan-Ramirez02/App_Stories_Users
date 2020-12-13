@@ -17,6 +17,10 @@ class StoriesController < ApplicationController
     end
   end
 
+  def user_profile
+    @users = User.all
+    
+  end
 
   # GET /stories/1
   # GET /stories/1.json
@@ -85,4 +89,8 @@ class StoriesController < ApplicationController
     def story_params
       params.require(:story).permit(:title, :picture, :content)
     end
+
+    # def user_params
+    #   params.require(:user).permit(:name, :email)
+    # end
 end

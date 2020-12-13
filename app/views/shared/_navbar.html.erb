@@ -23,7 +23,8 @@
           <% if user_signed_in? %>
               <li><%=link_to 'Create PicStory', new_story_path %></li>
               <li><%=link_to 'My PicStories', mystories_path  %></li>
-              <li><%=link_to 'My Profile',stories_path  %></li>
+              <li><%=link_to 'My Profile',myprofile_path  %></li>
+              <li><%=link_to 'Dashboard',dasboard_index_path  %></li>
               <li role="separator" class="divider"></li>
               <li><%=link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
             <% else %>

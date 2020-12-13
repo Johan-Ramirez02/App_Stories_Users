@@ -1,0 +1,31 @@
+<div class="row">
+    <div class="col-xs-8 col-sm-10 col-md-10">
+        <h1>My Profile</h1>
+    </div>
+        <div class="col-xs-4 col-sm-2 col-md-2">
+    </div>
+</div>
+
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Email:</strong>
+  <%= current_user.email %>
+</p>
+
+
+<p>
+  <strong>Name:</strong>
+  <%= current_user.name %>
+</p>
+
+<p>
+  <strong>Stories</strong>
+  <%= current_user.count_stories %>
+</p>
+
+
+<p>
+  <strong>Admin:</strong>
+  <%= current_user.admin %>
+</p>
